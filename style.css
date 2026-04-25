@@ -3,8 +3,33 @@ body{
     text-align: center;
     background-color: #f2f2f2;
 }
+.intro{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: url('tc tac pic neon.webp') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 h1{
-    color: #333;
+    color: rgb(0, 0, 0);
+    background-color: rgb(8, 0, 255);
+    margin: 40px;
+    border-radius: 15px;
+}
+.overlay{
+    background: rgba(0, 255, 217, 0.7);
+    padding: 50px;
+border-radius: 15px;
+text-align: center;
+}
+.title{
+    font-size: 60px;
+    margin-bottom: 40px;
+color: hsl(138, 100%, 66%);
+text-shadow: 7px 1px 3px rgba(255, 0, 0, 0.8);
+animation: bounce 3s infinite;
 }
 .game{
     display: grid;
@@ -16,12 +41,12 @@ h1{
 .cell{
     width: 100px;
     height: 100px;
-    background-color: #fff;
+    background-color: #1a8806;
     font-size: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid #444;
+    border: 2px solid #0800ff;
     cursor: pointer;
 }
 .cell:hover{
@@ -41,4 +66,137 @@ button{
 }
 button:hover{
     background: #0077aa;
+}
+.btn{
+    margin: 15px;
+    padding: 15px 30px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #68ff90;
+    color: #bc0000;
+    transition: transform 0.2s background-color 0.2s;
+
+}
+.btn:hover{
+    background-color: #03ce39;
+    transform: scale(1.1);
+}
+@keyframes bounce{
+    0%{
+        transform: scale(1);
+        color: hsl(119, 100%, 50%);
+    }
+    50%{
+        transform: scale(1.2);
+        color: hsl(67, 100%, 50%);
+    }
+    100%{
+        transform: scale(1);
+color: rgb(159, 228, 0);
+    }
+}
+#wasted{
+    position: fixed;
+   /* top: 0;  */      
+   /* left: 0;*/ 
+   /* width: 100%;*/ 
+/*height: 100%;*/ 
+display: flex;
+justify-content: center;
+align-items: center;
+/*opacity: 0*/
+pointer-events: none;
+
+z-index: 9999;
+
+}   
+#wasted img{
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    transform: scale(0.1);
+    transform-origin: center center;
+    transition:transform 11s ease-out, opacity 0.1s ease-out;
+    /*ax-width: 100%;*/
+    /*max-height: 100%;*/
+    /*object-fit: cover;*/
+}
+#wimg.show{
+    opacity: 1;
+    transform: scale(1);
+}
+#wimg.hide{
+    opacity: 0;
+    transform: scale(0.1);
+}
+#flash{
+    position: fixed;inset: 0;
+    background: white;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 99999;
+
+}
+@keyframes flash{
+    0% {opacity: 0;}
+        10% {opacity: 1;}
+            20% {opacity: 0;}
+                30% {opacity: 1;}
+                    40% {opacity: 0;}
+                        50% {opacity: 1;}
+                            100% {opacity: 0;}
+}
+.flash{
+    animation: flash 0.5s ease-in-out 5;
+}
+.thunder{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 200px;
+    height: 200px;
+    
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1999999;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    transform: scale(0.7);
+}
+.thunder.show{
+    opacity: 1;
+    transform: scale(1);
+}
+.tieimg{
+    position: fixed;
+    width: 25vw;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: opacity 0.5s ease,transform 0.5s ease;
+
+}
+.tieleft{
+left: 20px;   
+top: 30%;
+transform: translateY(-50%) scale(0.8);
+}
+.tieright{
+    right: 20px;
+    top: 30%;
+    transform: translateY(-50%) scale(0.8);
+}
+.tiebottom{
+left: 40%;
+bottom: 5px;
+transform: translateX(-50%) scale(0.8);
+}
+.tieshow{
+
+    opacity: 1;
+    transform: translate(-50%,-50%) scale(1);
 }

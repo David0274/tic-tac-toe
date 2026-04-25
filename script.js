@@ -1,6 +1,8 @@
 const cells=document.querySelectorAll('.cell');
 const status1=document.getElementById('status');
 const restartbtn=document.getElementById('restart');
+const winsound=document.getElementById('winsound');
+const losesound=document.getElementById('losesound');
 let cp='X';
 let board=["","","","","","","","",""];
 let isga=true;
@@ -32,6 +34,15 @@ function checkwin() {
     }
     if(win){
        status1.textContent =`player ${cp} wins`;
+       if(cp==='O'){
+        losesound.play();
+        showloose();
+        lighting();
+       }
+       else{
+        winsound.play();
+        cello();
+       }
        isga=false;
     }
     else if(!board.includes("")){
@@ -52,3 +63,52 @@ function restart(){
 }
 cells.forEach(cell=>cell.addEventListener('click',cellclick));
 restartbtn.addEventListener('click',restart);
+function showloose(){
+        const screen=document.getElementById("wimg");
+        //screen.style.pointerEvents="auto";
+        //screen.style.opacity="1";
+        screen.classList.remove("hide");
+
+        screen.classList.add("show");
+       // setTimeout(()=>{
+            //screen.style.opacity="0";
+            //setTimeout(()=>{
+                //screen.style.pointerEvents="none";
+            //},1000);
+        //},17000);
+         setTimeout(()=>{   
+     screen.classList.remove("show");
+
+        screen.classList.add("hide");
+            },17000);
+    }
+    function lighting(){
+        const flash=document.getElementById("flash");
+        flash.classList.add("flash");
+        setTimeout(()=>{   
+     flash.classList.remove("flash");
+
+      
+            },17000);
+    }
+    function cello(){
+    var duration=1*10000;
+    var end=Date.now()+duration;
+    (function frame(){
+        confetti({
+            particleCount:5,
+            angle:60,
+            spread:55,
+            origin:{x:0},
+        });
+                confetti({
+            particleCount:5,
+            angle:120,
+            spread:55,
+            origin:{x:1},
+        });
+        if(Date.now()<end){
+            requestAnimationFrame(frame);
+        }
+        })();
+    }
